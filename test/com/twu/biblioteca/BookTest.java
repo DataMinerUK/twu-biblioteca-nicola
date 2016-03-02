@@ -12,7 +12,7 @@ public class BookTest {
 
     @Before
     public void beforeEach(){
-        b = new Book("War and Peace", "Leo Tolstoy");
+        b = new Book("War and Peace", "Leo Tolstoy", 1869);
     }
 
     @Test
@@ -23,5 +23,10 @@ public class BookTest {
     @Test
     public void bookHasAuthor(){
         assertEquals("Leo Tolstoy", b.getAuthor());
+    }
+
+    @Test
+    public void bookHasYear(){
+        assertEquals(1869, b.getYear());
     }
 }
