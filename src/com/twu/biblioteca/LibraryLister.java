@@ -12,6 +12,10 @@ public class LibraryLister {
         this.bookList = bookList;
     }
 
-
+    public void callDetails(){
+        for(Book b: bookList){
+            b.printDetails(System.out);
+        }
+    }
 
 }
