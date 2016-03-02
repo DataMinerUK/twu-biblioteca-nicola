@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 /**
@@ -9,9 +10,18 @@ public class BookTest {
 
     private Book b;
 
+    @Before
+    public void beforeEach(){
+        b = new Book("War and Peace", "Leo Tolstoy");
+    }
+
     @Test
     public void bookHasTitle(){
-        b = new Book("War and Peace");
         assertEquals("War and Peace", b.getTitle());
+    }
+
+    @Test
+    public void bookHasAuthor(){
+        assertEquals("Leo Tolstoy", b.getAuthor());
     }
 }
