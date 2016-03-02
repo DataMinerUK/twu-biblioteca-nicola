@@ -2,7 +2,13 @@ package com.twu.biblioteca;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.PrintStream;
+
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 /**
  * Created by nihughes on 02/03/2016.
  */
@@ -28,5 +34,12 @@ public class BookTest {
     @Test
     public void bookHasYear(){
         assertEquals(1869, b.getYear());
+    }
+
+    @Test
+    public void bookCanPrintDetails(){
+        PrintStream mockPrintStream = mock(PrintStream.class);
+        b.printDetails(mockPrintStream);
+        verify(mockPrintStream).println("War and Peace\tLeo Tolstoy\t1869");
     }
 }

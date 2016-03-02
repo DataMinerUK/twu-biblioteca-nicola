@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import java.io.PrintStream;
+
 /**
  * Created by nihughes on 02/03/2016.
  */
@@ -24,5 +26,9 @@ public class Book {
 
     public int getYear() {
         return year;
+    }
+
+    public void printDetails(PrintStream printStream){
+        printStream.println(getTitle()+"\t"+getAuthor()+"\t"+getYear());
     }
 }
