@@ -42,4 +42,10 @@ public class BookTest {
         b.printDetails(mockPrintStream);
         verify(mockPrintStream).println("War and Peace\tLeo Tolstoy\t1869");
     }
+
+    @Test
+    public void canBeCheckedOut(){
+        b.checkOut();
+        assertEquals(b.isCheckedOut(), true);
+    }
 }

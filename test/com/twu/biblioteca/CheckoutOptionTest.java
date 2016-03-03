@@ -30,7 +30,7 @@ public class CheckoutOptionTest {
     public void canCheckOutFromLibrary(){
         ll = mock(LibraryLister.class);
         co.run(ll);
-        verify(ll, atLeastOnce()).removeItem();
+        verify(ll, atLeastOnce()).initiateCheckOut();
     }
 
 }

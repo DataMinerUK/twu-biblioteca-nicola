@@ -18,6 +18,6 @@ public class CheckoutOption implements MenuItem {
 
     @Override
     public void run(LibraryLister library){
-        library.removeItem();
+        library.initiateCheckOut();
     }
 }

@@ -29,9 +29,11 @@ public class BibliotecaApp {
         System.out.println();
         ListOption listBooks = new ListOption("List Books");
         QuitOption quit = new QuitOption("Quit");
+        CheckoutOption checkout = new CheckoutOption("Check Out");
         ArrayList<MenuItem> options = new ArrayList<MenuItem>();
         options.add(listBooks);
         options.add(quit);
+        options.add(checkout);
         MainMenu mainMenu = new MainMenu(options, library);
         mainMenu.printOptions(System.out);
         while(true){
