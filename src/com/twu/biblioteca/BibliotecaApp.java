@@ -17,6 +17,11 @@ public class BibliotecaApp {
         bookList.add(b2);
         bookList.add(b3);
         LibraryLister library = new LibraryLister(bookList);
-        library.callDetails();
+        System.out.println();
+        System.out.println("MAIN MENU");
+        System.out.println();
+        String[] options = new String[] {"List Books (command: LB)"};
+        MainMenu mainMenu = new MainMenu(options, library);
+        mainMenu.printOptions(System.out);
     }
 }
