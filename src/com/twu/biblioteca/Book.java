@@ -39,4 +39,8 @@ public class Book {
     public void checkOut(){
         checkedOut = true;
     }
+
+    public void checkIn(){
+        checkedOut = false;
+    }
 }

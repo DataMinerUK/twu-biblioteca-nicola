@@ -56,4 +56,16 @@ public class LibraryListerTest {
         verify(b2, never()).checkOut();
     }
 
+    @Test
+    public void canReturnItemsWhichCanBeCheckedIn(){
+        assertEquals("Thank you for returning the book", ll.returnItem("Lord of the Rings", "J.R.R Tolkein", 1969));
+        verify(b2, atLeastOnce()).checkIn();
+    }
+
+    @Test
+    public void cannotReturnItemsWhichCannotBeCheckedIn(){
+        assertEquals("That is not a valid book to return", ll.returnItem("Lord of the Rings", "J.R.R Tolkein", 1954));
+        verify(b1, never()).checkIn();
+    }
+
 }

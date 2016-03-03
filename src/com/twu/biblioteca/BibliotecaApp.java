@@ -7,7 +7,7 @@ public class BibliotecaApp {
 
     static String chooseMenuOption(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter your menu option command (first letter(s)): ");
+        System.out.println("Enter your menu option command (first letter(s)): ");
         return scanner.next();
     }
 
@@ -30,10 +30,12 @@ public class BibliotecaApp {
         ListOption listBooks = new ListOption("List Books");
         QuitOption quit = new QuitOption("Quit");
         CheckoutOption checkout = new CheckoutOption("Check Out");
+        ReturnOption checkIn = new ReturnOption("Return");
         ArrayList<MenuItem> options = new ArrayList<MenuItem>();
         options.add(listBooks);
         options.add(quit);
         options.add(checkout);
+        options.add(checkIn);
         MainMenu mainMenu = new MainMenu(options, library);
         mainMenu.printOptions(System.out);
         while(true){

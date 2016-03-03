@@ -48,4 +48,11 @@ public class BookTest {
         b.checkOut();
         assertEquals(b.isCheckedOut(), true);
     }
+
+    @Test
+    public void canBeReturned(){
+        b.checkOut();
+        b.checkIn();
+        assertEquals(b.isCheckedOut(), false);
+    }
 }

@@ -38,6 +38,23 @@ public class LibraryLister {
         System.out.println(removeItem(title, author, year));
     }
 
+    public String returnItem(String title, String author, int year){
+        for(Book b: bookList){
+            if(title.equals(b.getTitle()) && author.equals(b.getAuthor()) && year == b.getYear() && b.isCheckedOut()){
+                b.checkIn();
+                return "Thank you for returning the book";
+            }
+        }
+        return "That is not a valid book to return";
+    }
+
+    public void initiateReturn(){
+        String title = getItemTitle();
+        String author = getItemAuthor();
+        int year = getItemYear();
+        System.out.println(returnItem(title, author, year));
+    }
+
     private String getItemTitle(){
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the title: ");
