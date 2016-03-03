@@ -17,7 +17,7 @@ public class ListOption implements MenuItem {
     }
 
     @Override
-    public void run(){
-
+    public void run(LibraryLister library){
+        library.callDetails();
     }
 }
