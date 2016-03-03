@@ -17,10 +17,47 @@ public class MainMenu {
         this.options = options;
     }
 
-
     public void printOptions(PrintStream ps){
         for(MenuItem o: options){
             ps.println(o.getOptionName());
         }
     }
+
+    public void runMenuOption(String userInput, PrintStream ps){
+        if(isValidOption(userInput, ps)){
+            for(MenuItem o: options) {
+                if (userInput.equals(createCommand(o.getOptionName()))) {
+                    o.run(ll);
+                }
+            }
+        }
+    }
+
+    private boolean isValidOption(String userInput, PrintStream ps){
+        ArrayList<String> commandList = makeListOfCommand();
+        if(!commandList.contains(userInput)){
+            ps.println("Select a valid option!");
+            return false;
+        }
+        return true;
+    }
+
+    private ArrayList<String> makeListOfCommand(){
+        ArrayList<String> commandsList = new ArrayList<String>();
+        for(MenuItem o: options){
+            commandsList.add(createCommand(o.getOptionName()));
+        }
+        return commandsList;
+    }
+
+    private String createCommand(String input){
+        String[] splitInput = input.split("\\s+");
+        String command = "";
+        for(String word: splitInput){
+            String firstLetter = word.substring(0,1);
+            command += firstLetter;
+        }
+        return command;
+    }
 }
+

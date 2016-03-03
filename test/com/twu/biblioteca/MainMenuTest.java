@@ -22,6 +22,7 @@ public class MainMenuTest {
     private LibraryLister ll;
     private ArrayList<MenuItem>  options;
     private MenuItem mi;
+    private PrintStream mockPrintStream;
 
     @Before
     public void beforeEach(){
@@ -33,21 +34,22 @@ public class MainMenuTest {
         ll = mock(LibraryLister.class);
         mi = mock(ListOption.class);
         when(mi.getOptionName()).thenReturn("List Books");
+        options = new ArrayList<MenuItem>();
+        options.add(mi);
+        mm = new MainMenu(options, ll);
+        mockPrintStream = mock(PrintStream.class);
     }
 
     @Test
     public void canListMenuOptions(){
-        options = new ArrayList<MenuItem>();
-        options.add(mi);
-        mm = new MainMenu(options, ll);
-        PrintStream mockPrintStream = mock(PrintStream.class);
         mm.printOptions(mockPrintStream);
         verify(mockPrintStream).println("List Books");
     }
 
     @Test
-    public void canListBooksFromMenuOptions(){
-
+    public void canLetUserKnowIfOptionsInvalid(){
+        mm.runMenuOption("LL", mockPrintStream);
+        verify(mockPrintStream).println("Select a valid option!");
     }
 
 }
