@@ -10,7 +10,6 @@ import static org.junit.Assert.assertEquals;
 public class QuitOptionTest {
 
     private QuitOption q;
-    private LibraryLister ll;
 
     @Test
     public void hasOptionName(){
