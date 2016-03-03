@@ -1,12 +1,8 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 /**
@@ -21,11 +17,9 @@ public class WelcomeMessageTest {
         PrintStream mockPrintStream = mock(PrintStream.class);
 
         welcome = new WelcomeMessage(mockPrintStream);
-
         welcome.printMessage();
 
         verify(mockPrintStream).println(welcomeMessage);
     }
 }
 
-//        when(mockPrintStream.checkError()).thenReturn(true);

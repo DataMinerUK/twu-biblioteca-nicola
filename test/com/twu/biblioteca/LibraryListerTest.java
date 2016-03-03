@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
@@ -20,20 +21,11 @@ public class LibraryListerTest {
 
     @Before
     public void beforeEach(){
-        b1 =  mock(Book.class);
-        b2 = mock(Book.class);
+        b1 =  setUpBookMock("Lord of the Rings", "J.R.R Tolkein", 1954, false);
+        b2 = setUpBookMock("Lord of the Rings", "J.R.R Tolkein", 1969, true);
         bookList = new ArrayList<Book>();
-        bookList.add(b1);
-        bookList.add(b2);
+        bookList.addAll(Arrays.asList(b1, b2));
         ll = new LibraryLister(bookList);
-        when(b1.getTitle()).thenReturn("Lord of the Rings");
-        when(b1.getAuthor()).thenReturn("J.R.R Tolkein");
-        when(b1.getYear()).thenReturn(1954);
-        when(b1.isCheckedOut()).thenReturn(false);
-        when(b2.getTitle()).thenReturn("Lord of the Rings");
-        when(b2.getAuthor()).thenReturn("J.R.R Tolkein");
-        when(b2.getYear()).thenReturn(1969);
-        when(b2.isCheckedOut()).thenReturn(true);
     }
 
     @Test
@@ -66,6 +58,15 @@ public class LibraryListerTest {
     public void cannotReturnItemsWhichCannotBeCheckedIn(){
         assertEquals("That is not a valid book to return", ll.returnItem("Lord of the Rings", "J.R.R Tolkein", 1954));
         verify(b1, never()).checkIn();
+    }
+
+    private Book setUpBookMock(String title, String author, int year, boolean bool){
+        Book b = mock(Book.class);
+        when(b.getTitle()).thenReturn(title);
+        when(b.getAuthor()).thenReturn(author);
+        when(b.getYear()).thenReturn(year);
+        when(b.isCheckedOut()).thenReturn(bool);
+        return b;
     }
 
 }

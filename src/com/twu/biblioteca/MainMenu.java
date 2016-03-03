@@ -23,8 +23,10 @@ public class MainMenu {
         }
     }
 
-    public void runMenuOption(String userInput, PrintStream ps){
-        if(isValidOption(userInput, ps)){
+    public void runMenuOption(String userInput){
+        if(!isValidOption(userInput)){
+            System.out.println("Select a valid option!");
+        } else {
             for(MenuItem o: options) {
                 if (userInput.equals(createCommand(o.getOptionName()))) {
                     o.run(ll);
@@ -33,10 +35,9 @@ public class MainMenu {
         }
     }
 
-    private boolean isValidOption(String userInput, PrintStream ps){
+    private boolean isValidOption(String userInput){
         ArrayList<String> commandList = makeListOfCommand();
         if(!commandList.contains(userInput)){
-            ps.println("Select a valid option!");
             return false;
         }
         return true;

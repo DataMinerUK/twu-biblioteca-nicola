@@ -23,7 +23,7 @@ public class LibraryLister {
 
     public String removeItem(String title, String author, int year){
         for(Book b: bookList){
-            if(title.equals(b.getTitle()) && author.equals(b.getAuthor()) && year == b.getYear() && !b.isCheckedOut()){
+            if(isSameItem(b, title, author, year) && !b.isCheckedOut()){
                 b.checkOut();
                 return "Thank you! Enjoy the book";
             }
@@ -40,7 +40,7 @@ public class LibraryLister {
 
     public String returnItem(String title, String author, int year){
         for(Book b: bookList){
-            if(title.equals(b.getTitle()) && author.equals(b.getAuthor()) && year == b.getYear() && b.isCheckedOut()){
+            if(isSameItem(b, title, author, year) && b.isCheckedOut()){
                 b.checkIn();
                 return "Thank you for returning the book";
             }
@@ -53,6 +53,10 @@ public class LibraryLister {
         String author = getItemAuthor();
         int year = getItemYear();
         System.out.println(returnItem(title, author, year));
+    }
+
+    private boolean isSameItem(Book b, String title, String author, int year){
+        return title.equals(b.getTitle()) && author.equals(b.getAuthor()) && year == b.getYear();
     }
 
     private String getItemTitle(){
