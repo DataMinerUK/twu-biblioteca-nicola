@@ -20,7 +20,9 @@ public class BibliotecaApp {
         System.out.println();
         System.out.println("MAIN MENU");
         System.out.println();
-        String[] options = new String[] {"List Books (command: LB)"};
+        ListOption listBooks = new ListOption("List Books");
+        ArrayList<MenuItem> options = new ArrayList<MenuItem>();
+        options.add(listBooks);
         MainMenu mainMenu = new MainMenu(options, library);
         mainMenu.printOptions(System.out);
     }

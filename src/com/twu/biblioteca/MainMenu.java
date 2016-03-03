@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 /**
  * Created by nihughes on 03/03/2016.
@@ -9,16 +10,17 @@ import java.io.PrintStream;
 public class MainMenu {
 
     private LibraryLister ll;
-    private String[] options;
+    private ArrayList<MenuItem> options;
 
-    public MainMenu(String[] options, LibraryLister ll){
+    public MainMenu(ArrayList<MenuItem> options, LibraryLister ll){
         this.ll = ll;
         this.options = options;
     }
 
+
     public void printOptions(PrintStream ps){
-        for(String o: options){
-            ps.println(o);
+        for(MenuItem o: options){
+            ps.println(o.getOptionName());
         }
     }
 }
