@@ -18,4 +18,8 @@ public class LibraryLister {
         }
     }
 
+    public void removeItem(){
+
+    }
+
 }
