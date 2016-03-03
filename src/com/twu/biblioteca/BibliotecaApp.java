@@ -5,6 +5,12 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
+    static String chooseMenuOption(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your menu option command (first letter(s)): ");
+        return scanner.next();
+    }
+
     public static void main(String[] args) {
 
         WelcomeMessage welcome = new WelcomeMessage(System.out);
@@ -22,15 +28,17 @@ public class BibliotecaApp {
         System.out.println("MAIN MENU");
         System.out.println();
         ListOption listBooks = new ListOption("List Books");
+        QuitOption quit = new QuitOption("Quit");
         ArrayList<MenuItem> options = new ArrayList<MenuItem>();
         options.add(listBooks);
+        options.add(quit);
         MainMenu mainMenu = new MainMenu(options, library);
         mainMenu.printOptions(System.out);
+        while(true){
+            String command = chooseMenuOption();
+            mainMenu.runMenuOption(command, System.out);
+        }
+
     }
 
-    private String chooseMenuOption(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter your menu option command: ");
-        return scanner.next();
-    }
 }
