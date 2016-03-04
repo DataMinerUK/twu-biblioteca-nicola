@@ -21,7 +21,7 @@ public class BibliotecaApp {
         libraryList = makeLibraryList();
         LibraryLister library = new LibraryLister(libraryList);
         options = makeMenuOptions();
-        MainMenu mainMenu = new MainMenu(options, library);
+        MainMenu mainMenu = new MainMenu(options, library, userManager);
 
         String libraryNumber = askForLibraryNumber();
         String password = askForPassword();

@@ -18,15 +18,17 @@ public class MainMenuTest {
     private ArrayList<MenuItem>  options;
     private MenuItem menuItem;
     private PrintStream mockPrintStream;
+    private UserManager userManager;
 
     @Before
     public void beforeEach(){
         library = mock(LibraryLister.class);
+        userManager = mock(UserManager.class);
         menuItem = mock(ListOption.class);
         when(menuItem.getOptionName()).thenReturn("List Books");
         options = new ArrayList<MenuItem>();
         options.add(menuItem);
-        mainMenu = new MainMenu(options, library);
+        mainMenu = new MainMenu(options, library, userManager);
         mockPrintStream = mock(PrintStream.class);
     }
 
@@ -39,7 +41,7 @@ public class MainMenuTest {
     @Test
     public void canRunMenuItems(){
         mainMenu.runMenuOption("LB");
-        verify(menuItem, atLeastOnce()).run(library);
+        verify(menuItem, atLeastOnce()).run(library, userManager);
     }
 
     // Did not know how to implement this correctly

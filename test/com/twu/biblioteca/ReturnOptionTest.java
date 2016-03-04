@@ -15,6 +15,7 @@ public class ReturnOptionTest {
 
     private ReturnOption returnOption;
     private LibraryLister library;
+    private UserManager userManager;
 
     @Before
     public void beforeEach(){
@@ -29,7 +30,8 @@ public class ReturnOptionTest {
     @Test
     public void canReturnToLibrary(){
         library = mock(LibraryLister.class);
-        returnOption.run(library);
+        userManager = mock(UserManager.class);
+        returnOption.run(library, userManager);
         verify(library, atLeastOnce()).initiateReturn();
     }
 }

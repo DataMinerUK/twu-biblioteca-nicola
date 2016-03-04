@@ -12,6 +12,7 @@ public class ListOptionTest {
 
     private ListOption listOption;
     private LibraryLister library;
+    private UserManager userManager;
 
     @Before
     public void beforeEach(){
@@ -26,7 +27,8 @@ public class ListOptionTest {
     @Test
     public void canCalibraryDetailsOfLibraryLister(){
         library = mock(LibraryLister.class);
-        listOption.run(library);
+        userManager = mock(UserManager.class);
+        listOption.run(library, userManager);
         verify(library, atLeastOnce()).callDetails();
     }
 }

@@ -9,12 +9,14 @@ import java.util.ArrayList;
  */
 public class MainMenu {
 
-    private LibraryLister ll;
+    private LibraryLister libraryLister;
     private ArrayList<MenuItem> options;
+    private UserManager userManager;
 
-    public MainMenu(ArrayList<MenuItem> options, LibraryLister ll){
-        this.ll = ll;
+    public MainMenu(ArrayList<MenuItem> options, LibraryLister ll, UserManager u){
         this.options = options;
+        this.libraryLister = ll;
+        this.userManager = u;
     }
 
     public void printOptions(PrintStream ps){
@@ -29,7 +31,7 @@ public class MainMenu {
         } else {
             for(MenuItem o: options) {
                 if (userInput.equals(createCommand(o.getOptionName()))) {
-                    o.run(ll);
+                    o.run(libraryLister, userManager);
                 }
             }
         }

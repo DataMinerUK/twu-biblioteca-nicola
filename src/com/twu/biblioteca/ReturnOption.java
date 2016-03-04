@@ -16,7 +16,7 @@ public class ReturnOption implements MenuItem {
     }
 
     @Override
-    public void run(LibraryLister library){
+    public void run(LibraryLister library, UserManager userManager){
         library.initiateReturn();
     }
 }

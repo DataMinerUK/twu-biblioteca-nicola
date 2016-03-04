@@ -1,13 +1,13 @@
 package com.twu.biblioteca;
 
 /**
- * Created by nihughes on 03/03/2016.
+ * Created by nihughes on 04/03/2016.
  */
-public class QuitOption implements MenuItem {
+public class AccountOption implements MenuItem {
 
     private String optionName;
 
-    public QuitOption(String optionName){
+    public AccountOption(String optionName){
         this.optionName = optionName;
     }
 
@@ -18,6 +18,6 @@ public class QuitOption implements MenuItem {
 
     @Override
     public void run(LibraryLister library, UserManager userManager){
-        System.exit(0);
+        library.callDetails();
     }
 }

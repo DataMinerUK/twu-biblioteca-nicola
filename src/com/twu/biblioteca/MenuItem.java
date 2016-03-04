@@ -6,6 +6,6 @@ package com.twu.biblioteca;
 public interface MenuItem {
 
     public String getOptionName();
-    public void run(LibraryLister library);
+    public void run(LibraryLister library, UserManager userManager);
 
 }

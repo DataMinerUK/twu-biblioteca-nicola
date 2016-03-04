@@ -15,6 +15,7 @@ public class CheckoutOptionTest {
 
     private CheckoutOption checkout;
     private LibraryLister library;
+    private UserManager userManager;
 
     @Before
     public void beforeEach(){
@@ -29,7 +30,8 @@ public class CheckoutOptionTest {
     @Test
     public void canCheckOutFromLibrary(){
         library = mock(LibraryLister.class);
-        checkout.run(library);
+        userManager = mock(UserManager.class);
+        checkout.run(library, userManager);
         verify(library, atLeastOnce()).initiateCheckOut();
     }
 
