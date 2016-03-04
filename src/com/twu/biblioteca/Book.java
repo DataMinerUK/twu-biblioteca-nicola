@@ -5,7 +5,7 @@ import java.io.PrintStream;
 /**
  * Created by nihughes on 02/03/2016.
  */
-public class Book extends LibraryItem{
+public class Book extends LibraryItem {
 
     private String author;
 
@@ -25,5 +25,5 @@ public class Book extends LibraryItem{
     public void printDetails(PrintStream printStream){
         printStream.println(getTitle()+"\t"+getAuthor()+"\t"+getYear());
     }
-    
+
 }
