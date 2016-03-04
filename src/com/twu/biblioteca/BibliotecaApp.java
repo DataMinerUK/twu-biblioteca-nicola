@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class BibliotecaApp {
 
     private ArrayList<MenuItem> options;
+    private ArrayList<LibraryItem> libraryList;
+    private ArrayList<User> users;
 
     public static void main(String[] args) {
         BibliotecaApp bibliotec = new BibliotecaApp();
@@ -14,10 +16,21 @@ public class BibliotecaApp {
     }
 
     public void go(){
-        ArrayList<LibraryItem> libraryList = makeLibraryList();
+        users = makeUserList();
+        UserManager userManager = new UserManager(users);
+        libraryList = makeLibraryList();
         LibraryLister library = new LibraryLister(libraryList);
-        ArrayList<MenuItem> options = makeMenuOptions();
+        options = makeMenuOptions();
         MainMenu mainMenu = new MainMenu(options, library);
+
+        String libraryNumber = askForLibraryNumber();
+        String password = askForPassword();
+
+        while(!userManager.canUserLogIn(libraryNumber, password)){
+            libraryNumber = askForLibraryNumber();
+            password = askForPassword();
+            userManager.canUserLogIn(libraryNumber, password);
+        }
 
         makeWelcome();
         mainMenu.printOptions(System.out);
@@ -26,6 +39,14 @@ public class BibliotecaApp {
             String command = chooseMenuOption().toUpperCase();
             mainMenu.runMenuOption(command);
         }
+    }
+
+    private ArrayList<User> makeUserList(){
+        User u1 = new User("Nicola", "nicola@email.com", "555 123456", "123-4567", "password");
+        User u2 = new User("Rose", "rose@email.com", "555 555555", "555-5555", "password5");
+        ArrayList<User> users = new ArrayList<User>();
+        users.addAll(Arrays.asList(u1, u2));
+        return users;
     }
 
     private ArrayList<LibraryItem> makeLibraryList(){
@@ -45,9 +66,21 @@ public class BibliotecaApp {
         CheckoutOption checkout = new CheckoutOption("Checkout");
         ReturnOption checkIn = new ReturnOption("Return");
         QuitOption quit = new QuitOption("Quit");
-        options = new ArrayList<MenuItem>();
+        ArrayList<MenuItem> options = new ArrayList<MenuItem>();
         options.addAll(Arrays.asList(listBooks, checkout, checkIn, quit));
         return options;
+    }
+
+    private String askForLibraryNumber(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your library number: ");
+        return scanner.next();
+    }
+
+    private String askForPassword(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your password: ");
+        return scanner.next();
     }
 
     private void makeWelcome(){
