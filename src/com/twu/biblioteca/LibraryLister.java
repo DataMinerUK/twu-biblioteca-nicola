@@ -39,9 +39,9 @@ public class LibraryLister {
     }
 
     public String returnItem(String title, String creator, int year){
-        for(LibraryItem b: libraryList){
-            if(isSameItem(b, title, creator, year) && b.isCheckedOut()){
-                b.checkIn();
+        for(LibraryItem l: libraryList){
+            if(isSameItem(l, title, creator, year) && l.isCheckedOut()){
+                l.checkIn();
                 return "Thank you for returning";
             }
         }
