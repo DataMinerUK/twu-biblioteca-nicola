@@ -13,7 +13,6 @@ public class Book extends LibraryItem {
         this.title = t;
         this.creator = c;
         this.year = y;
-        this.checkedOut = false;
     }
 
     @Override

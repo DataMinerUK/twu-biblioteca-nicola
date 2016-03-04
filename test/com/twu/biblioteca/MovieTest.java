@@ -8,16 +8,20 @@ import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by nihughes on 04/03/2016.
  */
 public class MovieTest {
     private Movie movie;
+    private User user;
 
     @Before
     public void beforeEach(){
         movie = new Movie("City of God", "Fernando Meirelles", 2003, 5);
+        user = mock(User.class);
+        when(user.getLibraryNumber()).thenReturn("123-4567");
     }
 
     @Test
@@ -44,13 +48,15 @@ public class MovieTest {
 
     @Test
     public void canBeCheckedOut(){
-        movie.checkOut();
+        movie.setCheckedOutBy(user);
         assertEquals(movie.isCheckedOut(), true);
+        assertEquals(movie.getCheckedOutBy(), "123-4567");
     }
 
     @Test
     public void canBeReturned(){
         movie.checkIn();
         assertEquals(movie.isCheckedOut(), false);
+        assertEquals(movie.getCheckedOutBy(), null);
     }
 }

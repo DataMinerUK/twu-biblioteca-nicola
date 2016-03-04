@@ -15,7 +15,6 @@ public class Movie extends LibraryItem {
         this.creator = c;
         this.year = y;
         this.rating = r;
-        this.checkedOut = false;
     }
 
 

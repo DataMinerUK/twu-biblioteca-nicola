@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class UserManager {
 
     private ArrayList<User> userList;
+    private User currentUser;
 
     public UserManager(ArrayList<User> u){
         this.userList = u;
@@ -39,6 +40,15 @@ public class UserManager {
             }
         }
         return details;
+    }
+
+    public User getLoggedInUser(){
+        for(User u : userList){
+            if(u.isLoggedIn()){
+                currentUser = u;
+            }
+        }
+        return currentUser;
     }
 
     private boolean userVerified(User user, String libraryNumber, String password){

@@ -10,7 +10,8 @@ public abstract class LibraryItem {
     protected String title;
     protected String creator;
     protected int year;
-    protected boolean checkedOut;
+    protected boolean checkedOut = false;
+    protected String checkedOutBy;
 
     protected String getTitle(){
         return title;
@@ -26,12 +27,22 @@ public abstract class LibraryItem {
 
     protected boolean isCheckedOut(){ return checkedOut; }
 
-    public void checkOut(){
+    protected String getCheckedOutBy(){
+        return checkedOutBy;
+    }
+
+    public void setCheckedOutBy(User user){
+        checkedOutBy = user.getLibraryNumber();
+        checkOut();
+    }
+
+    private void checkOut(){
         checkedOut = true;
     }
 
     public void checkIn(){
         checkedOut = false;
+        checkedOutBy = null;
     }
 
     public abstract void printDetails(PrintStream printStream);

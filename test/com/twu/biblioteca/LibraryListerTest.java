@@ -17,15 +17,20 @@ public class LibraryListerTest {
     private ArrayList<LibraryItem> libraryList;
     private Book book1;
     private Book book2;
+    private Book book3;
+    private User user;
 
 
     @Before
     public void beforeEach(){
         book1 =  setUpBookMock("Lord of the Rings", "J.R.R Tolkein", 1954, false);
         book2 = setUpBookMock("Lord of the Rings", "J.R.R Tolkein", 1969, true);
+        book3 =  setUpBookMock("Pride and Prejudice", "JJane Austen", 1813, false);
         libraryList = new ArrayList<LibraryItem>();
-        libraryList.addAll(Arrays.asList(book1, book2));
+        libraryList.addAll(Arrays.asList(book1, book2, book3));
         library = new LibraryLister(libraryList);
+        user = mock(User.class);
+        when(user.getLibraryNumber()).thenReturn("123-4567");
     }
 
     @Test
@@ -37,15 +42,21 @@ public class LibraryListerTest {
 
     @Test
     public void canRemoveItemsWhichCanBeCheckedOut(){
-        assertEquals("Thank you! Enjoy", library.removeItem("Lord of the Rings", "J.R.R Tolkein", 1954));
-        verify(book1, atLeastOnce()).checkOut();
-        verify(book2, never()).checkOut();
+        assertEquals("Thank you! Enjoy", library.removeItem("Lord of the Rings", "J.R.R Tolkein", 1954, user));
+        verify(book1, atLeastOnce()).setCheckedOutBy(user);
+        verify(book2, never()).setCheckedOutBy(user);
     }
 
     @Test
     public void cannotRemoveItemsWhichCannotBeCheckedOut(){
-        assertEquals("That item is not available", library.removeItem("Lord of the Rings", "J.R.R Tolkein", 1969));
-        verify(book2, never()).checkOut();
+        assertEquals("That item is not available", library.removeItem("Lord of the Rings", "J.R.R Tolkein", 1969, user));
+        verify(book2, never()).setCheckedOutBy(user);
+    }
+
+    @Test
+    public void canNoteWhichUserCheckedOutItem(){
+        library.removeItem("Pride and Prejudice", "JJane Austen", 1813, user);
+        verify(book3, atLeastOnce()).setCheckedOutBy(user);
     }
 
     @Test

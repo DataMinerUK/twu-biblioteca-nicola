@@ -8,9 +8,20 @@ import java.util.Scanner;
  */
 public class LibraryLister {
     private ArrayList<LibraryItem> libraryList;
+    private ArrayList<LibraryItem> userItems;
 
     public LibraryLister(ArrayList<LibraryItem> libraryList){
         this.libraryList = libraryList;
+    }
+
+    public ArrayList<LibraryItem> getUserItems(User user){
+        userItems = new ArrayList<LibraryItem>();
+        for(LibraryItem libraryItem: libraryList){
+            if(user.getLibraryNumber().equals(libraryItem.getCheckedOutBy())){
+                userItems.add(libraryItem);
+            }
+        }
+        return userItems;
     }
 
     public void callDetails(){
@@ -21,21 +32,21 @@ public class LibraryLister {
         }
     }
 
-    public String removeItem(String title, String creator, int year){
+    public String removeItem(String title, String creator, int year, User user){
         for(LibraryItem l: libraryList){
             if(isSameItem(l, title, creator, year) && !l.isCheckedOut()){
-                l.checkOut();
+                l.setCheckedOutBy(user);
                 return "Thank you! Enjoy";
             }
         }
         return "That item is not available";
     }
 
-    public void initiateCheckOut(){
+    public void initiateCheckOut(User user){
         String title = getItemTitle();
         String creator = getItemCreator();
         int year = getItemYear();
-        System.out.println(removeItem(title, creator, year));
+        System.out.println(removeItem(title, creator, year, user));
     }
 
     public String returnItem(String title, String creator, int year){

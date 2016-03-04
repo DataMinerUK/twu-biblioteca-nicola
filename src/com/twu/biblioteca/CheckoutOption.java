@@ -18,6 +18,7 @@ public class CheckoutOption implements MenuItem {
 
     @Override
     public void run(LibraryLister library, UserManager userManager){
-        library.initiateCheckOut();
+        User currentUser = userManager.getLoggedInUser();
+        library.initiateCheckOut(currentUser);
     }
 }

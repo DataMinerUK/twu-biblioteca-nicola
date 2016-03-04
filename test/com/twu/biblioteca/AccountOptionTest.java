@@ -16,10 +16,13 @@ public class AccountOptionTest {
     private AccountOption accountOption;
     private LibraryLister library;
     private UserManager userManager;
+    private User user;
 
     @Before
     public void beforeEach(){
         accountOption = new AccountOption("Account");
+        library = mock(LibraryLister.class);
+        userManager = mock(UserManager.class);
     }
 
     @Test
@@ -29,9 +32,8 @@ public class AccountOptionTest {
 
     @Test
     public void canShowUserDetails(){
-        library = mock(LibraryLister.class);
-        userManager = mock(UserManager.class);
         accountOption.run(library, userManager);
         verify(userManager, atLeastOnce()).getUserDetails();
     }
+
 }

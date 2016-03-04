@@ -6,17 +6,20 @@ import java.io.PrintStream;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-
+import static org.mockito.Mockito.*;
 /**
  * Created by nihughes on 02/03/2016.
  */
 public class BookTest {
 
     private Book book;
+    private User user;
 
     @Before
     public void beforeEach(){
         book = new Book("War and Peace", "Leo Tolstoy", 1869);
+        user = mock(User.class);
+        when(user.getLibraryNumber()).thenReturn("123-4567");
     }
 
     @Test
@@ -42,14 +45,16 @@ public class BookTest {
     }
 
     @Test
-    public void canBeCheckedOut(){
-        book.checkOut();
+    public void canBeCheckedOutByUser(){
+        book.setCheckedOutBy(user);
         assertEquals(book.isCheckedOut(), true);
+        assertEquals(book.getCheckedOutBy(), "123-4567");
     }
 
     @Test
     public void canBeReturned(){
         book.checkIn();
         assertEquals(book.isCheckedOut(), false);
+        assertEquals(book.getCheckedOutBy(), null);
     }
 }
