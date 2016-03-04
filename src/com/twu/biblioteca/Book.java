@@ -6,10 +6,10 @@ import java.io.PrintStream;
  * Created by nihughes on 02/03/2016.
  */
 public class Book {
-    String title;
-    String author;
-    int year;
-    boolean checkedOut;
+    private String title;
+    private String author;
+    private int year;
+    private boolean checkedOut;
 
     public Book(String t, String a, int y){
         this.title = t;
