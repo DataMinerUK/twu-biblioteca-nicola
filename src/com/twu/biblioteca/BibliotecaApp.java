@@ -65,9 +65,10 @@ public class BibliotecaApp {
         ListOption listBooks = new ListOption("List");
         CheckoutOption checkout = new CheckoutOption("Checkout");
         ReturnOption checkIn = new ReturnOption("Return");
+        AccountOption account = new AccountOption("Account");
         QuitOption quit = new QuitOption("Quit");
         ArrayList<MenuItem> options = new ArrayList<MenuItem>();
-        options.addAll(Arrays.asList(listBooks, checkout, checkIn, quit));
+        options.addAll(Arrays.asList(listBooks, checkout, checkIn, account, quit));
         return options;
     }
 

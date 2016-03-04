@@ -18,6 +18,7 @@ public class AccountOption implements MenuItem {
 
     @Override
     public void run(LibraryLister library, UserManager userManager){
-        library.callDetails();
+        String details = userManager.getUserDetails();
+        System.out.println(details);
     }
 }
