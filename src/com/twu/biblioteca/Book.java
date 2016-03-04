@@ -12,10 +12,10 @@ public class Book {
     boolean checkedOut;
 
     public Book(String t, String a, int y){
-        title = t;
-        author = a;
-        year = y;
-        checkedOut = false;
+        this.title = t;
+        this.author = a;
+        this.year = y;
+        this.checkedOut = false;
     }
 
     public String getTitle(){
