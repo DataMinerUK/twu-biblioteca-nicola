@@ -7,19 +7,19 @@ import java.io.PrintStream;
  */
 public abstract class LibraryItem {
 
-    public String title;
+    protected String title;
     protected int year;
     protected boolean checkedOut;
 
-    public String getTitle(){
+    protected String getTitle(){
         return title;
     }
 
-    public int getYear() {
+    protected int getYear() {
         return year;
     }
 
-    public boolean isCheckedOut(){ return checkedOut; }
+    protected boolean isCheckedOut(){ return checkedOut; }
 
     public void checkOut(){
         checkedOut = true;
