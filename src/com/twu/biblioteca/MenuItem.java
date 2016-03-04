@@ -5,7 +5,7 @@ package com.twu.biblioteca;
  */
 public interface MenuItem {
 
-    public abstract String getOptionName();
-    public abstract void run(LibraryLister library);
+    public String getOptionName();
+    public void run(LibraryLister library);
 
 }
