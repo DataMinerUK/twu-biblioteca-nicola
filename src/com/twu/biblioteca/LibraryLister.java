@@ -7,56 +7,56 @@ import java.util.Scanner;
  * Created by nihughes on 02/03/2016.
  */
 public class LibraryLister {
-    private ArrayList<Book> bookList;
+    private ArrayList<LibraryItem> libraryList;
 
-    public LibraryLister(ArrayList<Book> bookList){
-        this.bookList = bookList;
+    public LibraryLister(ArrayList<LibraryItem> libraryList){
+        this.libraryList = libraryList;
     }
 
     public void callDetails(){
-        for(Book b: bookList){
-            if(!b.isCheckedOut()) {
-                b.printDetails(System.out);
+        for(LibraryItem l: libraryList){
+            if(!l.isCheckedOut()) {
+                l.printDetails(System.out);
             }
         }
     }
 
-    public String removeItem(String title, String author, int year){
-        for(Book b: bookList){
-            if(isSameItem(b, title, author, year) && !b.isCheckedOut()){
-                b.checkOut();
-                return "Thank you! Enjoy the book";
+    public String removeItem(String title, String creator, int year){
+        for(LibraryItem l: libraryList){
+            if(isSameItem(l, title, creator, year) && !l.isCheckedOut()){
+                l.checkOut();
+                return "Thank you! Enjoy";
             }
         }
-        return "That book is not available";
+        return "That item is not available";
     }
 
     public void initiateCheckOut(){
         String title = getItemTitle();
-        String author = getItemAuthor();
+        String creator = getItemCreator();
         int year = getItemYear();
-        System.out.println(removeItem(title, author, year));
+        System.out.println(removeItem(title, creator, year));
     }
 
-    public String returnItem(String title, String author, int year){
-        for(Book b: bookList){
-            if(isSameItem(b, title, author, year) && b.isCheckedOut()){
+    public String returnItem(String title, String creator, int year){
+        for(LibraryItem b: libraryList){
+            if(isSameItem(b, title, creator, year) && b.isCheckedOut()){
                 b.checkIn();
-                return "Thank you for returning the book";
+                return "Thank you for returning";
             }
         }
-        return "That is not a valid book to return";
+        return "That is not a valid item to return";
     }
 
     public void initiateReturn(){
         String title = getItemTitle();
-        String author = getItemAuthor();
+        String creator = getItemCreator();
         int year = getItemYear();
-        System.out.println(returnItem(title, author, year));
+        System.out.println(returnItem(title, creator, year));
     }
 
-    private boolean isSameItem(Book b, String title, String author, int year){
-        return title.equals(b.getTitle()) && author.equals(b.getAuthor()) && year == b.getYear();
+    private boolean isSameItem(LibraryItem l, String title, String creator, int year){
+        return title.equals(l.getTitle()) && creator.equals(l.getCreator()) && year == l.getYear();
     }
 
     private String getItemTitle(){
@@ -65,9 +65,9 @@ public class LibraryLister {
         return scanner.nextLine().trim();
     }
 
-    private String getItemAuthor(){
+    private String getItemCreator(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the author: ");
+        System.out.print("Enter the author/director: ");
         return scanner.nextLine().trim();
     }
 

@@ -26,8 +26,8 @@ public class MovieTest {
     }
 
     @Test
-    public void movieHasDirector(){
-        assertEquals("Fernando Meirelles", movie.getDirector());
+    public void movieHasCreator(){
+        assertEquals("Fernando Meirelles", movie.getCreator());
     }
 
     @Test

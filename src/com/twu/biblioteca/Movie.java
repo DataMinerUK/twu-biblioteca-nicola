@@ -7,25 +7,21 @@ import java.io.PrintStream;
  */
 public class Movie extends LibraryItem {
 
-    private String director;
     private int rating;
 
-    public Movie(String t, String d, int y, int r){
+    public Movie(String t, String c, int y, int r){
         super();
         this.title = t;
-        this.director = d;
+        this.creator = c;
         this.year = y;
         this.rating = r;
         this.checkedOut = false;
     }
 
-    public String getDirector(){
-        return director;
-    }
 
     @Override
     public void printDetails(PrintStream printStream){
-        printStream.println(getTitle()+"\t"+getDirector()+"\t"+getYear()+"\t"+getRating());
+        printStream.println(getTitle()+"\t"+getCreator()+"\t"+getYear()+"\t"+getRating());
     }
 
     private int getRating(){

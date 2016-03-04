@@ -7,23 +7,18 @@ import java.io.PrintStream;
  */
 public class Book extends LibraryItem {
 
-    private String author;
 
-    public Book(String t, String a, int y){
+    public Book(String t, String c, int y){
         super();
         this.title = t;
-        this.author = a;
+        this.creator = c;
         this.year = y;
         this.checkedOut = false;
     }
 
-    public String getAuthor(){
-        return author;
-    }
-
     @Override
     public void printDetails(PrintStream printStream){
-        printStream.println(getTitle()+"\t"+getAuthor()+"\t"+getYear());
+        printStream.println(getTitle()+"\t"+getCreator()+"\t"+getYear());
     }
 
 }

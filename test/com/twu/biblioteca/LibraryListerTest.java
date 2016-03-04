@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class LibraryListerTest {
 
     private LibraryLister library;
-    private ArrayList<Book> bookList;
+    private ArrayList<LibraryItem> libraryList;
     private Book book1;
     private Book book2;
 
@@ -23,9 +23,9 @@ public class LibraryListerTest {
     public void beforeEach(){
         book1 =  setUpBookMock("Lord of the Rings", "J.R.R Tolkein", 1954, false);
         book2 = setUpBookMock("Lord of the Rings", "J.R.R Tolkein", 1969, true);
-        bookList = new ArrayList<Book>();
-        bookList.addAll(Arrays.asList(book1, book2));
-        library = new LibraryLister(bookList);
+        libraryList = new ArrayList<LibraryItem>();
+        libraryList.addAll(Arrays.asList(book1, book2));
+        library = new LibraryLister(libraryList);
     }
 
     @Test
@@ -37,33 +37,33 @@ public class LibraryListerTest {
 
     @Test
     public void canRemoveItemsWhichCanBeCheckedOut(){
-        assertEquals("Thank you! Enjoy the book", library.removeItem("Lord of the Rings", "J.R.R Tolkein", 1954));
+        assertEquals("Thank you! Enjoy", library.removeItem("Lord of the Rings", "J.R.R Tolkein", 1954));
         verify(book1, atLeastOnce()).checkOut();
         verify(book2, never()).checkOut();
     }
 
     @Test
     public void cannotRemoveItemsWhichCannotBeCheckedOut(){
-        assertEquals("That book is not available", library.removeItem("Lord of the Rings", "J.R.R Tolkein", 1969));
+        assertEquals("That item is not available", library.removeItem("Lord of the Rings", "J.R.R Tolkein", 1969));
         verify(book2, never()).checkOut();
     }
 
     @Test
     public void canReturnItemsWhichCanBeCheckedIn(){
-        assertEquals("Thank you for returning the book", library.returnItem("Lord of the Rings", "J.R.R Tolkein", 1969));
+        assertEquals("Thank you for returning", library.returnItem("Lord of the Rings", "J.R.R Tolkein", 1969));
         verify(book2, atLeastOnce()).checkIn();
     }
 
     @Test
     public void cannotReturnItemsWhichCannotBeCheckedIn(){
-        assertEquals("That is not a valid book to return", library.returnItem("Lord of the Rings", "J.R.R Tolkein", 1954));
+        assertEquals("That is not a valid item to return", library.returnItem("Lord of the Rings", "J.R.R Tolkein", 1954));
         verify(book1, never()).checkIn();
     }
 
     private Book setUpBookMock(String title, String author, int year, boolean bool){
         Book b = mock(Book.class);
         when(b.getTitle()).thenReturn(title);
-        when(b.getAuthor()).thenReturn(author);
+        when(b.getCreator()).thenReturn(author);
         when(b.getYear()).thenReturn(year);
         when(b.isCheckedOut()).thenReturn(bool);
         return b;

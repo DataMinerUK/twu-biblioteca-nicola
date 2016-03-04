@@ -8,11 +8,16 @@ import java.io.PrintStream;
 public abstract class LibraryItem {
 
     protected String title;
+    protected String creator;
     protected int year;
     protected boolean checkedOut;
 
     protected String getTitle(){
         return title;
+    }
+
+    protected String getCreator(){
+        return creator;
     }
 
     protected int getYear() {
