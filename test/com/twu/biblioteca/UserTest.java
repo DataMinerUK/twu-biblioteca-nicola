@@ -41,4 +41,16 @@ public class UserTest {
     public void userHasPassword(){
         assertEquals("password", user.getPassword());
     }
+
+    @Test
+    public void canBeLoggedIn(){
+        user.logIn();
+        assertEquals(true, user.isLoggedIn());
+    }
+
+    @Test
+    public void canBeLoggedOut(){
+        user.logOut();
+        assertEquals(false, user.isLoggedIn());
+    }
 }

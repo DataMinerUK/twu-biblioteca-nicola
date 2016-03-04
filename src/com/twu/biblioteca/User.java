@@ -10,6 +10,7 @@ public class User {
     private String phone;
     private String libraryNumber;
     private String password;
+    private boolean loggedIn;
 
     public User(String n, String e, String ph, String lN, String pw){
         this.name = n;
@@ -17,6 +18,7 @@ public class User {
         this.phone = ph;
         this.libraryNumber = lN;
         this.password = pw;
+        this.loggedIn = false;
     }
 
     public String getName(){
@@ -33,5 +35,14 @@ public class User {
     }
     public String getPassword(){
         return password;
+    }
+    public boolean isLoggedIn(){ return loggedIn; }
+
+    public void logIn(){
+        this.loggedIn = true;
+    }
+
+    public void logOut(){
+        this.loggedIn = false;
     }
 }
