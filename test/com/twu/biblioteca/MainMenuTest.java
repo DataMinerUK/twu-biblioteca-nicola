@@ -13,33 +13,33 @@ import java.util.ArrayList;
  */
 public class MainMenuTest {
 
-    private MainMenu mm;
-    private LibraryLister ll;
+    private MainMenu mainMenu;
+    private LibraryLister library;
     private ArrayList<MenuItem>  options;
-    private MenuItem mi;
+    private MenuItem menuItem;
     private PrintStream mockPrintStream;
 
     @Before
     public void beforeEach(){
-        ll = mock(LibraryLister.class);
-        mi = mock(ListOption.class);
-        when(mi.getOptionName()).thenReturn("List Books");
+        library = mock(LibraryLister.class);
+        menuItem = mock(ListOption.class);
+        when(menuItem.getOptionName()).thenReturn("List Books");
         options = new ArrayList<MenuItem>();
-        options.add(mi);
-        mm = new MainMenu(options, ll);
+        options.add(menuItem);
+        mainMenu = new MainMenu(options, library);
         mockPrintStream = mock(PrintStream.class);
     }
 
     @Test
     public void canListMenuOptions(){
-        mm.printOptions(mockPrintStream);
+        mainMenu.printOptions(mockPrintStream);
         verify(mockPrintStream).println("List Books");
     }
 
     @Test
     public void canRunMenuItems(){
-        mm.runMenuOption("LB");
-        verify(mi, atLeastOnce()).run(ll);
+        mainMenu.runMenuOption("LB");
+        verify(menuItem, atLeastOnce()).run(library);
     }
 
     // Did not know how to implement this correctly

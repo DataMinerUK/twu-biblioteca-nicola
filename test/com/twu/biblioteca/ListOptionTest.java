@@ -10,23 +10,23 @@ import static org.mockito.Mockito.*;
  */
 public class ListOptionTest {
 
-    private ListOption lo;
-    private LibraryLister ll;
+    private ListOption listOption;
+    private LibraryLister library;
 
     @Before
     public void beforeEach(){
-        lo = new ListOption("List Books");
+        listOption = new ListOption("List Books");
     }
 
     @Test
     public void hasOptionName(){
-        assertEquals("List Books", lo.getOptionName());
+        assertEquals("List Books", listOption.getOptionName());
     }
 
     @Test
-    public void canCallDetailsOfLibraryLister(){
-        ll = mock(LibraryLister.class);
-        lo.run(ll);
-        verify(ll, atLeastOnce()).callDetails();
+    public void canCalibraryDetailsOfLibraryLister(){
+        library = mock(LibraryLister.class);
+        listOption.run(library);
+        verify(library, atLeastOnce()).callDetails();
     }
 }

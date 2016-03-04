@@ -13,24 +13,24 @@ import static org.mockito.Mockito.verify;
  */
 public class CheckoutOptionTest {
 
-    private CheckoutOption co;
-    private LibraryLister ll;
+    private CheckoutOption checkout;
+    private LibraryLister library;
 
     @Before
     public void beforeEach(){
-        co = new CheckoutOption("Check Out");
+        checkout = new CheckoutOption("Check Out");
     }
 
     @Test
     public void hasOptionName(){
-        assertEquals("Check Out", co.getOptionName());
+        assertEquals("Check Out", checkout.getOptionName());
     }
 
     @Test
     public void canCheckOutFromLibrary(){
-        ll = mock(LibraryLister.class);
-        co.run(ll);
-        verify(ll, atLeastOnce()).initiateCheckOut();
+        library = mock(LibraryLister.class);
+        checkout.run(library);
+        verify(library, atLeastOnce()).initiateCheckOut();
     }
 
 }

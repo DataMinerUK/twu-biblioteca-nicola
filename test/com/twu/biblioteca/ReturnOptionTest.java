@@ -13,23 +13,23 @@ import static org.mockito.Mockito.verify;
  */
 public class ReturnOptionTest {
 
-    private ReturnOption ro;
-    private LibraryLister ll;
+    private ReturnOption returnOption;
+    private LibraryLister library;
 
     @Before
     public void beforeEach(){
-        ro = new ReturnOption("Return");
+        returnOption = new ReturnOption("Return");
     }
 
     @Test
     public void hasOptionName(){
-        assertEquals("Return", ro.getOptionName());
+        assertEquals("Return", returnOption.getOptionName());
     }
 
     @Test
     public void canReturnToLibrary(){
-        ll = mock(LibraryLister.class);
-        ro.run(ll);
-        verify(ll, atLeastOnce()).initiateReturn();
+        library = mock(LibraryLister.class);
+        returnOption.run(library);
+        verify(library, atLeastOnce()).initiateReturn();
     }
 }

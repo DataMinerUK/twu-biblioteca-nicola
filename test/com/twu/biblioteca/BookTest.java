@@ -12,44 +12,44 @@ import static org.mockito.Mockito.verify;
  */
 public class BookTest {
 
-    private Book b;
+    private Book book;
 
     @Before
     public void beforeEach(){
-        b = new Book("War and Peace", "Leo Tolstoy", 1869);
+        book = new Book("War and Peace", "Leo Tolstoy", 1869);
     }
 
     @Test
     public void bookHasTitle(){
-        assertEquals("War and Peace", b.getTitle());
+        assertEquals("War and Peace", book.getTitle());
     }
 
     @Test
     public void bookHasAuthor(){
-        assertEquals("Leo Tolstoy", b.getAuthor());
+        assertEquals("Leo Tolstoy", book.getAuthor());
     }
 
     @Test
     public void bookHasYear(){
-        assertEquals(1869, b.getYear());
+        assertEquals(1869, book.getYear());
     }
 
     @Test
     public void bookCanPrintDetails(){
         PrintStream mockPrintStream = mock(PrintStream.class);
-        b.printDetails(mockPrintStream);
+        book.printDetails(mockPrintStream);
         verify(mockPrintStream).println("War and Peace\tLeo Tolstoy\t1869");
     }
 
     @Test
     public void canBeCheckedOut(){
-        b.checkOut();
-        assertEquals(b.isCheckedOut(), true);
+        book.checkOut();
+        assertEquals(book.isCheckedOut(), true);
     }
 
     @Test
     public void canBeReturned(){
-        b.checkIn();
-        assertEquals(b.isCheckedOut(), false);
+        book.checkIn();
+        assertEquals(book.isCheckedOut(), false);
     }
 }
