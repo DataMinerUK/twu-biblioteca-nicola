@@ -40,6 +40,17 @@ public class MovieTest {
     }
 
     @Test
+    public void isInitiallyNotCheckedout(){
+        assertEquals(false, movie.isCheckedOut());
+    }
+
+
+    @Test
+    public void initalCheckedoutByIsNull(){
+        assertEquals(null, movie.getCheckedOutBy());
+    }
+
+    @Test
     public void movieCanPrintDetails(){
         PrintStream mockPrintStream = mock(PrintStream.class);
         movie.printDetails(mockPrintStream);

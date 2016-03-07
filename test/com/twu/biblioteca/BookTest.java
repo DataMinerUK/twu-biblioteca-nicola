@@ -41,7 +41,7 @@ public class BookTest {
     public void isInitiallyNotCheckedout(){
         assertEquals(false, book.isCheckedOut());
     }
-    
+
 
     @Test
     public void initalCheckedoutByIsNull(){
