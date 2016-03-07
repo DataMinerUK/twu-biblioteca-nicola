@@ -34,14 +34,14 @@ public class BookTest {
 
     @Test
     public void bookHasYear(){
-        assertEquals(false, book.isCheckedOut());
+        assertEquals(1869, book.getYear());
     }
-
 
     @Test
     public void isInitiallyNotCheckedout(){
-        assertEquals(1869, book.getYear());
+        assertEquals(false, book.isCheckedOut());
     }
+    
 
     @Test
     public void initalCheckedoutByIsNull(){
